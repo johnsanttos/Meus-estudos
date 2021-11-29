@@ -22,7 +22,7 @@ export default function() {
           />
           
           <Button
-          title = 'Qual é o nome do jacalé'
+          title = 'Salvar nome'
           onPress= {handleClick}
           
           />
