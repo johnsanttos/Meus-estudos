@@ -3,60 +3,60 @@ import { View, SafeAreaView, StyleSheet, Text,TextInput, Button} from 'react-nat
 
 export default function() {
  
-  const Hello = (props) => {
-    const [name,setName] = useState ('John');
-    const [mostrar, setMostrar] = useState (false);
+  const [conta, setConta] = useState('');
+  const [gorjeta, setGorjeta] = useState ('0')
+  
+  const calc = () => {
+      let nConta = parseFloat (conta); //
+      if (nConta) {
 
-    const handleClick =() => {
-      setMostrar(!mostrar);
-    }
- 
+        setGorjeta(10/100 * nConta )
 
-    return(
-          <View>
-          <TextInput style={{
-          width:200,
-          height:40,
-          borderWidth: 2,}} 
-          value = {name} onChangeText = {t=>setName(t)}
-          />
-          
-          <Button
-          title = 'Salvar nome'
-          onPress= {handleClick}
-          
-          />
-
-
-          {mostrar &&
-          <View style={{
-            width: 200,
-            height: 200,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderWidth: 2 ,
-            marginTop: 30,
- 
-          }}>
-            <Text>O nome do jacalé é: </Text>
-            <Text>{name}</Text>
-          </View>
-          }
-         
-          </View>
-    )
+      } else {
+        alert ('Digite o valor da conta')
+      }
   }
  
   return (
 <SafeAreaView style={{
                                 flex:1,
-                                justifyContent: 'center',
                                 alignItems:'center'
 
-                            }}
->
+                            }}>
 
-<Hello/>
+                              <Text
+                              style ={{
+                                fontSize: 25,
+                                color: '#000'
+                              }}
+                              > Calculadora de gorjeta </Text>
+
+                              <TextInput
+                              style ={{
+                              width: 350,
+                              height:40,
+                              fontSize:18,
+                              backgroundColor: '#e7feff',
+                              marginTop:20,
+                              borderRadius:10,
+                              padding:10
+
+                              }}
+                              placeholder = "Quanto deu a conta?"
+                              placeholderTextColor ='#000'
+                              keyboardType ='numeric'
+                              value ={conta}
+                              onChangeText = {n=>setConta (n)}
+                              />
+
+                              <Button style= {{
+                                marginTop: 10,
+                              }}
+                              title ='Calcular' onPress ={calc}
+                            
+                              />
+
+
 
 </SafeAreaView>
   );
