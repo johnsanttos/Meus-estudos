@@ -1,63 +1,33 @@
-import React, {useState} from 'react';
-import { View, SafeAreaView, StyleSheet, Text,TextInput, Button} from 'react-native';
+import React,{useEffect} from 'react';
+import { View, Text } from 'react-native';
+import Css from './src/estilos/estilos'
+import lista from './src/lista'
 
-export default function() {
- 
-  const [conta, setConta] = useState('');
-  const [gorjeta, setGorjeta] = useState ('0')
+import { Alert } from 'react-native';
+
+
+export default function AppCalculadora() {
+
+
+
+
+ return (
+ <View style = {Css.container}>
   
-  const calc = () => {
-      let nConta = parseFloat (conta); //
-      if (nConta) {
+{lista.map(item => {
+return (
 
-        setGorjeta(10/100 * nConta )
+<View style= {{padding: 10,}}>
+  
+<Text style= {{fontSize: 15,}}> 
 
-      } else {
-        alert ('Digite o valor da conta')
-      }
-  }
- 
-  return (
-<SafeAreaView style={{
-                                flex:1,
-                                alignItems:'center'
+{item.task} </Text>
+</View>
+)
 
-                            }}>
-
-                              <Text
-                              style ={{
-                                fontSize: 25,
-                                color: '#000'
-                              }}
-                              > Calculadora de gorjeta </Text>
-
-                              <TextInput
-                              style ={{
-                              width: 350,
-                              height:40,
-                              fontSize:18,
-                              backgroundColor: '#e7feff',
-                              marginTop:20,
-                              borderRadius:10,
-                              padding:10
-
-                              }}
-                              placeholder = "Quanto deu a conta?"
-                              placeholderTextColor ='#000'
-                              keyboardType ='numeric'
-                              value ={conta}
-                              onChangeText = {n=>setConta (n)}
-                              />
-
-                              <Button style= {{
-                                marginTop: 10,
-                              }}
-                              title ='Calcular' onPress ={calc}
-                            
-                              />
+})}
 
 
-
-</SafeAreaView>
+ </View>
   );
 }
